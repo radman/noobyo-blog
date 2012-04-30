@@ -9,6 +9,13 @@ end
 
 
 namespace :deploy do
+  desc "Set appropriate permissions on current release"
+  task :set_permissions do
+    run "#{sudo} chown -R www-data:www-data #{release_path}"
+    run "#{sudo} chmod -R 775 #{release_path}"
+  end
+  after "deploy:finalize_update", "deploy:set_permissions"
+
   desc "Remove current app from the server"
   task :remove_app do
     run "#{sudo} rm -rf #{deploy_to}"
