@@ -1,5 +1,4 @@
 namespace :nginx do
-  desc "Install latest stable release of nginx"
   desc "Setup nginx configuration for this application"
   task :setup, :roles => :web do
     template "nginx.erb", "/tmp/nginx_conf"
