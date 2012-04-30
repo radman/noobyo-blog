@@ -6,9 +6,9 @@ load "config/recipes/nginx"
 load "config/recipes/mysql"
 load "config/recipes/wordpress"
 
-server "ec2-23-21-35-191.compute-1.amazonaws.com", :app, :web, :db
-set :application, "bootstrap-wordpress"
-set :nginx_server_name, "_"
+server "23.21.115.207", :app, :web, :db
+set :application, "noobyo-blog"
+set :nginx_server_name, "blog.newcomer101.com"
 
 set :user, "deployer"
 set :deploy_to, "/home/#{user}/apps/#{application}"
