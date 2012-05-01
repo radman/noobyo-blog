@@ -8,7 +8,7 @@ load "config/recipes/wordpress"
 
 server "23.21.115.207", :app, :web, :db
 set :application, "noobyo-blog"
-set :nginx_server_name, "blog.newcomer101.com"
+set :nginx_server_name, ".noobyo.com blog.evayin.com .nuubly.com .newcomer101.com .newcomers101.com .vancouvernewcomers.com"
 
 set :user, "deployer"
 set :deploy_to, "/home/#{user}/apps/#{application}"

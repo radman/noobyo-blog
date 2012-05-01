@@ -4,7 +4,7 @@ server {
 
 	root <%= current_path %>;
 	index index.php;
-  client_max_body_size 5M;
+  client_max_body_size 10M;
 
 	location / {
     try_files $uri $uri/ @wordpress /index.php?q=$request_uri;
