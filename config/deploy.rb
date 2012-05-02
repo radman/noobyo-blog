@@ -8,7 +8,13 @@ load "config/recipes/wordpress"
 
 server "23.21.115.207", :app, :web, :db
 set :application, "noobyo-blog"
-set :nginx_server_name, ".noobyo.com blog.evayin.com .nuubly.com .newcomer101.com .newcomers101.com .vancouvernewcomers.com"
+
+# redirection settings
+set :nginx_redirect_server_names, "blog.evayin.com .nuubly.com .newcomer101.com .newcomers101.com .vancouvernewcomers.com"
+set :nginx_redirect_to, "blog.noobyo.com"
+
+# main address (should include at least the redirect_to address above)
+set :nginx_server_name, ".noobyo.com"
 
 set :user, "deployer"
 set :deploy_to, "/home/#{user}/apps/#{application}"

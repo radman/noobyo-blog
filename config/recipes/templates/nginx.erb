@@ -1,5 +1,11 @@
 server {
-	listen   80;
+  listen 80;
+  server_name <%= nginx_redirect_server_names %>;
+  rewrite ^/(.*) http://<%= nginx_redirect_to %>/$1 permanent;
+}
+
+server {
+	listen 80;
 	server_name <%= nginx_server_name %>;
 
 	root <%= current_path %>;
