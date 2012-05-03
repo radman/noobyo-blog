@@ -19,7 +19,7 @@ namespace :wordpress do
   desc "Symlinks for wordpress"
   task :symlink, :roles => :web do
     run "#{sudo} ln -nfs #{shared_path}/wp-config.php #{release_path}/wp-config.php"
-    run "#{sudo} ln -nfs #{shared_path}/wp-content/ #{release_path}/wp-content"
+    #run "#{sudo} ln -nfs #{shared_path}/wp-content/ #{release_path}/wp-content"
   end
   after "deploy:finalize_update", "wordpress:symlink"
 
@@ -29,4 +29,10 @@ namespace :wordpress do
     mysql "grant all on #{wordpress_db_name}.* to '#{wordpress_db_user}'@'#{wordpress_db_host}' identified by '#{wordpress_db_password}'; flush privileges;"
   end
   after "wordpress:setup", "wordpress:create_database"
+
+  desc "Update wp-content directory"
+  task :update_wp_content, :roles => :web do
+    run "#{sudo} mv #{previous_release}/wp-content #{release_path}"
+  end
+  after "deploy:finalize_update", "wordpress:update_wp_content"
 end

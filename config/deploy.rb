@@ -17,7 +17,6 @@ set :nginx_redirect_to, "blog.noobyo.com"
 set :nginx_server_name, ".noobyo.com"
 
 set :user, "deployer"
-set :group, "www-data"
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :deploy_via, :remote_cache
 set :use_sudo, false

@@ -11,7 +11,7 @@ end
 namespace :deploy do
   desc "Set appropriate permissions"
   task :set_permissions do
-    run "#{sudo} chown -R #{user}:#{group} #{deploy_to}"
+    run "#{sudo} chown -R www-data:www-data #{deploy_to}"
     run "#{sudo} chmod -R 775 #{deploy_to}"
   end
   after "deploy:cleanup", "deploy:set_permissions"
