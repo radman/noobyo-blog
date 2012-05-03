@@ -25,6 +25,12 @@ namespace :deploy do
     mysql "drop database #{wordpress_db_name};"
   end
   after "deploy:remove_app", "nginx:restart"
-  
+end
+
+namespace :config do
+  desc "Set user to deploy:admin"
+  task :set_user_to_deploy_admin do
+    run "#{sudo} chown -R deployer:admin #{deploy_to}"
+  end
 end
 

@@ -16,9 +16,10 @@ namespace :wordpress do
   end
   after "deploy:setup", "wordpress:setup"
 
-  desc "Symlink the wp-config.php configuration file"
+  desc "Symlinks for wordpress"
   task :symlink, :roles => :web do
     run "#{sudo} ln -nfs #{shared_path}/wp-config.php #{release_path}/wp-config.php"
+    run "#{sudo} ln -nfs #{shared_path}/wp-content/ #{release_path}/wp-content"
   end
   after "deploy:finalize_update", "wordpress:symlink"
 
