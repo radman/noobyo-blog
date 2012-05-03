@@ -9,12 +9,12 @@ end
 
 
 namespace :deploy do
-  desc "Set appropriate permissions on current release"
+  desc "Set appropriate permissions"
   task :set_permissions do
-    run "#{sudo} chown -R www-data:www-data #{release_path}"
-    run "#{sudo} chmod -R 775 #{release_path}"
+    run "#{sudo} chown -R #{user}:#{group} #{deploy_to}"
+    run "#{sudo} chmod -R 775 #{deploy_to}"
   end
-  after "deploy:finalize_update", "deploy:set_permissions"
+  after "deploy:cleanup", "deploy:set_permissions"
 
   desc "Remove current app from the server"
   task :remove_app do
@@ -27,10 +27,4 @@ namespace :deploy do
   after "deploy:remove_app", "nginx:restart"
 end
 
-namespace :config do
-  desc "Set user to deploy:admin"
-  task :set_user_to_deploy_admin do
-    run "#{sudo} chown -R deployer:admin #{deploy_to}"
-  end
-end
 
